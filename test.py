@@ -4,4 +4,6 @@ print("helloooo world")
 #test.py
 print("hello world")
 
-print("Yooooo")
+print("hi hello hi there hi :)")
+
+print('hello world!')
