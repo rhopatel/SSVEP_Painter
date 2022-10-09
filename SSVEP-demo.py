@@ -15,8 +15,23 @@ def main():
     frame.place(anchor='center', relx=0.5, rely=0.5)
 
     # Place images
-    img = ImageTk.PhotoImage(Image.open("media/arrow.jpg"))
-    frame.create_image(0,0,anchor=NW,image=img)
+    margins = 400
+    width = 1920
+    height = 1080
+
+    img = ImageTk.PhotoImage(Image.open("media/pencil-icon.png"))
+    frame.create_image(margins, 170,anchor=NW,image=img)
+    frame.create_image(margins, 320,anchor=NW,image=img)
+
+    frame.create_image(margins, 550,anchor=NW,image=img)
+    frame.create_image(margins, 720,anchor=NW,image=img)
+
+
+    frame.create_image(width-margins, 170,anchor=NW,image=img)
+    frame.create_image(width-margins, 320,anchor=NW,image=img)
+
+    frame.create_image(width-margins, 550,anchor=NW,image=img)
+    frame.create_image(width-margins, 720,anchor=NW,image=img)
 
     root.mainloop()
 
