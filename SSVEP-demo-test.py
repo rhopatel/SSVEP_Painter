@@ -2,7 +2,7 @@
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
-from time import time
+import time
 import math
 
 class SSVEP_demo(object):
