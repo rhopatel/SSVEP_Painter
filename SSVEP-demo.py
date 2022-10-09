@@ -1,20 +1,19 @@
 
 from tkinter import *
 import tkinter
+from PIL import ImageTk, Image
 
 def main():
     print("hello")
-    # create root window
     root = Tk()
 
-
-    # root window title and dimension
     root.title("SSVEP_demo")
-    # Set geometry (widthxheight)
-    root.geometry('350x200')
-    
-    # all widgets will be here
-    # Execute Tkinter
+    root.geometry('1920x1080')
+    frame = Frame(root, width=600, height=400)
+    frame.pack()
+    frame.place(anchor='center', relx=0.5, rely=0.5)
+    img = ImageTk.PhotoImage(Image.open("media/arrow.jpg"))
+
     root.mainloop()
 
 if __name__ == "__main__":
