@@ -68,7 +68,7 @@ def main():
     # Root setup
     root = Tk()
     root.title("SSVEP_demo")
-    filename = "media/pencil-icon.png"
+    filename = "media/resized.png"
     root.geometry('1920x1080')
     app = SSVEP_demo(root, filename)
     root.mainloop()
