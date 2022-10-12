@@ -3,7 +3,6 @@ from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
 import time
-import math
 
 class SSVEP_demo(object):
     def __init__(self, root, filename):
@@ -25,7 +24,7 @@ class SSVEP_demo(object):
         image = Image.open(self.filename)
 
         img = ImageTk.PhotoImage(image)
-        invImg = ImageTk.PhotoImage(image.transpose(Image.FLIP_LEFT_RIGHT))
+        invImg = ImageTk.PhotoImage(image.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
 
         currentImage1 = img
         currentImage2 = img
@@ -36,77 +35,78 @@ class SSVEP_demo(object):
         currentImage7 = img
         currentImage8 = img
 
-        flipped1 = False
-        flipped2 = False
-        flipped3 = False
-        flipped4 = False
-        flipped5 = False
-        flipped6 = False
-        flipped7 = False
-        flipped8 = False
-    
+
         while True:
             self.time = (time.time() - self.init_time) * 1000
-            eps = 2
-
-            if (self.time % 20 < eps):                
-                currentImage1 = invImg if not flipped1 else img
-                flipped1 = not flipped1
-
-            if (self.time % 50 < eps):                
-                currentImage2 = invImg if not flipped1 else img
-                flipped2 = not flipped2
             
-            if (self.time % 77 < eps):                
-                currentImage3 = invImg if not flipped1 else img
-                flipped3 = not flipped3
+            #print(self.time, " ms")
+            #print((self.time // 50 ) % 2)
+            if ((self.time // 50) % 2 == 0):
+                currentImage1 = invImg
+            else:
+                currentImage1 = img
 
-            if (self.time % 100 < eps):                
-                currentImage4 = invImg if not flipped1 else img
-                flipped4 = not flipped4
+            #if (self.time % 50 < eps):                
+                #currentImage2 = invImg if not flipped1 else img
+                #flipped2 = not flipped2
+            
+            if ((self.time // 77) % 2 == 0):              
+                currentImage3 = invImg
+            else:
+                currentImage3 = img
 
-            if (self.time % 133 < eps):                
-                currentImage5 = invImg if not flipped1 else img
-                flipped5 = not flipped5
-            
-            if (self.time % 150 < eps):                
-                currentImage6 = invImg if not flipped1 else img
-                flipped6 = not flipped6
-            
-            if (self.time % 250 < eps):                
-                currentImage7 = invImg if not flipped1 else img
-                flipped7 = not flipped7
-            
-            if (self.time % 500 < eps):                
-                currentImage8 = invImg if not flipped1 else img
-                flipped8 = not flipped8
+            #if (self.time % 77 < eps):                
+                #currentImage4 = invImg if not flipped1 else img
+                #flipped4 = not flipped4
 
-            #icon1 = self.canvas.create_image(
-            #    250, 250, image=tkimage)
-            # Place images
+            if ((self.time // 100) % 2 == 0):              
+                currentImage5 = invImg
+            else:
+                currentImage5 = img
+
+            
+            #if (self.time % 100 < eps):                
+                #currentImage6 = invImg if not flipped1 else img
+                #flipped6 = not flipped6
+            
+            if ((self.time // 133) % 2 == 0):               
+                currentImage7 = invImg
+            else:
+                currentImage7 = img
+
+            
+            #if (self.time % 133 < eps):                
+                #currentImage8 = invImg if not flipped1 else img
+                #flipped8 = not flipped8
+
+
             margins = 200
             width = 1500
-            height = 1080
+            #height = 1080
 
             icon1 = self.canvas.create_image(margins, 170,anchor=NW,image=currentImage1)
-            icon2 = self.canvas.create_image(margins, 320,anchor=NW,image=currentImage2)
+            #icon2 = self.canvas.create_image(margins, 320,anchor=NW,image=currentImage2)
 
             icon3= self.canvas.create_image(margins, 550,anchor=NW,image=currentImage3)
-            icon4= self.canvas.create_image(margins, 720,anchor=NW,image=currentImage4)
+            #icon4= self.canvas.create_image(margins, 720,anchor=NW,image=currentImage4)
 
             icon5= self.canvas.create_image(width-margins, 170,anchor=NW,image=currentImage5)
-            icon6 =self.canvas.create_image(width-margins, 320,anchor=NW,image=currentImage6)
+            #icon6 =self.canvas.create_image(width-margins, 320,anchor=NW,image=currentImage6)
 
             icon7 = self.canvas.create_image(width-margins, 550,anchor=NW,image=currentImage7)
-            icon8 = self.canvas.create_image(width-margins, 720,anchor=NW,image=currentImage8)
+            #icon8 = self.canvas.create_image(width-margins, 720,anchor=NW,image=currentImage8)
 
-            icons= [icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8]
+            #icons= [icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8]
+            icons= [icon1, icon3, icon5, icon7]
+
+
             self.root.after_idle(self.update)
 
             yield
 
             for icon in icons:
                 self.canvas.delete(icon)
+
         #time += 1
         #angle %= 360
 
