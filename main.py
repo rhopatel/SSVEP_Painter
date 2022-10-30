@@ -50,45 +50,56 @@ class SSVEP_demo(object):
         #currentImage7 = img
         #currentImage8 = img
 
-        FREQ_1 = 50
-        FREQ_2 = 50
+        FREQ_1 = 15
+        FREQ_2 = 20
+        FREQ_3 = 5
+        FREQ_4 = 25
+        FREQ_5 = 10
+        FREQ_6 = 30
 
+        coeff_1 = (1000 / FREQ_1) / 2
+        coeff_2 = (1000 / FREQ_2) / 2
+        coeff_3 = (1000 / FREQ_3) / 2  
+        coeff_4 = (1000 / FREQ_4) / 2
+        coeff_5 = (1000 / FREQ_5) / 2
+        coeff_6 = (1000 / FREQ_6) / 2  
+        
 
         while True:
             self.time = (time.time() - self.init_time) * 1000
             
             #print(self.time, " ms")
             #print((self.time // 50 ) % 2)
-            if ((self.time // 50) % 2 == 0):
+            if ((self.time // coeff_1) % 2 == 0):
                 dyn_pencil = inv_pencil_image
             else:
                 dyn_pencil = pencil_image
             
-            if ((self.time // 77) % 2 == 0):              
+            if ((self.time // coeff_2) % 2 == 0):              
                 dyn_eraser = inv_eraser_image
             else:
                 dyn_eraser = eraser_image
 
           
-            if ((self.time // 100) % 2 == 0):              
+            if ((self.time // coeff_3) % 2 == 0):              
                 dyn_width_increaser = inv_top_left_arrow_image
             else:
                 dyn_width_increaser = top_left_arrow_image
 
             
-            if ((self.time // 133) % 2 == 0):               
+            if ((self.time // coeff_4) % 2 == 0):               
                 dyn_width_decreaser = inv_bottom_right_arrow_image
             else:
                 dyn_width_decreaser = bottom_right_arrow_image
 
           
-            if ((self.time // 33) % 2 == 0):              
+            if ((self.time // coeff_5) % 2 == 0):              
                 dyn_color_increaser = inv_top_left_arrow_image
             else:
                 dyn_color_increaser = top_left_arrow_image
 
             
-            if ((self.time // 100) % 2 == 0):               
+            if ((self.time // coeff_6) % 2 == 0):               
                 dyn_color_decreaser = inv_bottom_right_arrow_image
             else:
                 dyn_color_decreaser = bottom_right_arrow_image
@@ -99,13 +110,13 @@ class SSVEP_demo(object):
             #height = 1080
 
             drawn_pencil = self.canvas.create_image(margins, 170,anchor=NW,image=dyn_pencil)
-            drawn_eraser = self.canvas.create_image(margins, 320,anchor=NW,image=dyn_eraser)
+            drawn_eraser = self.canvas.create_image(width-margins, 170,anchor=NW,image=dyn_eraser)
 
             drawn_width_increaser= self.canvas.create_image(margins, 620,anchor=NW,image=dyn_width_increaser)
             drawn_width_decreaser= self.canvas.create_image(margins, 750,anchor=NW,image=dyn_width_decreaser)
 
-            drawn_color_increaser = self.canvas.create_image(width-margins, 190,anchor=NW,image=dyn_color_increaser)
-            drawn_color_decreaser =self.canvas.create_image(width-margins, 320,anchor=NW,image=dyn_color_decreaser)
+            drawn_color_increaser = self.canvas.create_image(width-margins, 620,anchor=NW,image=dyn_color_increaser)
+            drawn_color_decreaser =self.canvas.create_image(width-margins, 750,anchor=NW,image=dyn_color_decreaser)
 
             #icon7 = self.canvas.create_image(width-margins, 550,anchor=NW,image=dyn_width_increaser)
             #icon8 = self.canvas.create_image(width-margins, 720,anchor=NW,image=currentImage8)
