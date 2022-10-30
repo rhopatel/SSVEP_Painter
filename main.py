@@ -109,8 +109,14 @@ class SSVEP_demo(object):
             width = 1500
             #height = 1080
 
+            def clicked():
+                print("i got clicked")
+
             drawn_pencil = self.canvas.create_image(margins, 170,anchor=NW,image=dyn_pencil)
+            butt_pencil = Button(self.root, image = dyn_pencil, command = clicked)
+            butt_pencil.place(x=100,y=100)
             drawn_eraser = self.canvas.create_image(width-margins, 170,anchor=NW,image=dyn_eraser)
+
 
             drawn_width_increaser= self.canvas.create_image(margins, 620,anchor=NW,image=dyn_width_increaser)
             drawn_width_decreaser= self.canvas.create_image(margins, 750,anchor=NW,image=dyn_width_decreaser)
