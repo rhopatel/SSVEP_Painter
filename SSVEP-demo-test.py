@@ -1,4 +1,3 @@
-
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
@@ -38,10 +37,10 @@ class SSVEP_demo(object):
 
         while True:
             self.time = (time.time() - self.init_time) * 1000
-            
+
             #print(self.time, " ms")
             #print((self.time // 50 ) % 2)
-            if ((self.time // 50) % 2 == 0):
+            if ((self.time // 20) % 2 == 0):
                 currentImage1 = invImg
             else:
                 currentImage1 = img
@@ -49,8 +48,8 @@ class SSVEP_demo(object):
             #if (self.time % 50 < eps):                
                 #currentImage2 = invImg if not flipped1 else img
                 #flipped2 = not flipped2
-            
-            if ((self.time // 77) % 2 == 0):              
+
+            if ((self.time // 25) % 2 == 0):              
                 currentImage3 = invImg
             else:
                 currentImage3 = img
@@ -59,22 +58,22 @@ class SSVEP_demo(object):
                 #currentImage4 = invImg if not flipped1 else img
                 #flipped4 = not flipped4
 
-            if ((self.time // 100) % 2 == 0):              
+            if ((self.time // 33) % 2 == 0):              
                 currentImage5 = invImg
             else:
                 currentImage5 = img
 
-            
+
             #if (self.time % 100 < eps):                
                 #currentImage6 = invImg if not flipped1 else img
                 #flipped6 = not flipped6
-            
-            if ((self.time // 133) % 2 == 0):               
+
+            if ((self.time // 100) % 2 == 0):               
                 currentImage7 = invImg
             else:
                 currentImage7 = img
 
-            
+
             #if (self.time % 133 < eps):                
                 #currentImage8 = invImg if not flipped1 else img
                 #flipped8 = not flipped8
