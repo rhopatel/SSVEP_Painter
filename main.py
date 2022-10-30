@@ -63,7 +63,6 @@ class SSVEP_demo(object):
         coeff_4 = (1000 / FREQ_4) / 2
         coeff_5 = (1000 / FREQ_5) / 2
         coeff_6 = (1000 / FREQ_6) / 2  
-        
 
         while True:
             self.time = (time.time() - self.init_time) * 1000
@@ -109,12 +108,8 @@ class SSVEP_demo(object):
             width = 1500
             #height = 1080
 
-            def clicked():
-                print("i got clicked")
-
             drawn_pencil = self.canvas.create_image(margins, 170,anchor=NW,image=dyn_pencil)
-            butt_pencil = Button(self.root, image = dyn_pencil, command = clicked)
-            butt_pencil.place(x=100,y=100)
+
             drawn_eraser = self.canvas.create_image(width-margins, 170,anchor=NW,image=dyn_eraser)
 
 
