@@ -50,6 +50,9 @@ class SSVEP_demo(object):
         #currentImage7 = img
         #currentImage8 = img
 
+        FREQ_1 = 50
+        FREQ_2 = 50
+
 
         while True:
             self.time = (time.time() - self.init_time) * 1000
@@ -79,29 +82,29 @@ class SSVEP_demo(object):
                 dyn_width_decreaser = bottom_right_arrow_image
 
           
-            if ((self.time // 100) % 2 == 0):              
+            if ((self.time // 33) % 2 == 0):              
                 dyn_color_increaser = inv_top_left_arrow_image
             else:
                 dyn_color_increaser = top_left_arrow_image
 
             
-            if ((self.time // 133) % 2 == 0):               
+            if ((self.time // 100) % 2 == 0):               
                 dyn_color_decreaser = inv_bottom_right_arrow_image
             else:
                 dyn_color_decreaser = bottom_right_arrow_image
 
 
-            margins = 200
+            margins = 150
             width = 1500
             #height = 1080
 
             drawn_pencil = self.canvas.create_image(margins, 170,anchor=NW,image=dyn_pencil)
             drawn_eraser = self.canvas.create_image(margins, 320,anchor=NW,image=dyn_eraser)
 
-            drawn_width_increaser= self.canvas.create_image(margins, 550,anchor=NW,image=dyn_width_increaser)
-            drawn_width_decreaser= self.canvas.create_image(margins, 720,anchor=NW,image=dyn_width_decreaser)
+            drawn_width_increaser= self.canvas.create_image(margins, 620,anchor=NW,image=dyn_width_increaser)
+            drawn_width_decreaser= self.canvas.create_image(margins, 750,anchor=NW,image=dyn_width_decreaser)
 
-            drawn_color_increaser = self.canvas.create_image(width-margins, 170,anchor=NW,image=dyn_color_increaser)
+            drawn_color_increaser = self.canvas.create_image(width-margins, 190,anchor=NW,image=dyn_color_increaser)
             drawn_color_decreaser =self.canvas.create_image(width-margins, 320,anchor=NW,image=dyn_color_decreaser)
 
             #icon7 = self.canvas.create_image(width-margins, 550,anchor=NW,image=dyn_width_increaser)
