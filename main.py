@@ -5,11 +5,10 @@ from PIL import ImageTk, Image
 import time
 
 class SSVEP_demo(object):
-    def __init__(self, root, filename):
+    def __init__(self, root):
         self.root = root
         canvas = tk.Canvas(root, width=1920, height=1080)
         self.canvas = canvas
-        self.filename = filename
 
         self.canvas.place(anchor='center', relx=0.5, rely=0.5)
         self.canvas.pack()
@@ -21,19 +20,35 @@ class SSVEP_demo(object):
         self.init_time = time.time()
 
     def draw(self):
-        image = Image.open(self.filename)
 
-        img = ImageTk.PhotoImage(image)
-        invImg = ImageTk.PhotoImage(image.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+        #load images
+        pencil = Image.open("media/pencil-icon.png")
+        eraser = Image.open("media/eraser-icon.png")
 
-        currentImage1 = img
-        currentImage2 = img
-        currentImage3 = img
-        currentImage4 = img
-        currentImage5 = img
-        currentImage6 = img
-        currentImage7 = img
-        currentImage8 = img
+        top_left_arrow = Image.open("media/TopLeft.png")
+        bottom_right_arrow = Image.open("media/BotRight.png")
+
+        pencil_image = ImageTk.PhotoImage(pencil)
+        inv_pencil_image = ImageTk.PhotoImage(pencil.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+
+        eraser_image = ImageTk.PhotoImage(eraser)
+        inv_eraser_image = ImageTk.PhotoImage(eraser.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+
+        top_left_arrow_image = ImageTk.PhotoImage(top_left_arrow)
+        inv_top_left_arrow_image = ImageTk.PhotoImage(top_left_arrow.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+
+        bottom_right_arrow_image = ImageTk.PhotoImage(bottom_right_arrow)
+        inv_bottom_right_arrow_image = ImageTk.PhotoImage(bottom_right_arrow.transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+
+
+        dyn_pencil = pencil_image
+        dyn_eraser = eraser_image
+        dyn_width_increaser = top_left_arrow_image
+        dyn_width_decreaser = bottom_right_arrow_image
+        dyn_color_increaser = top_left_arrow_image
+        dyn_color_decreaser = bottom_right_arrow_image
+        #currentImage7 = img
+        #currentImage8 = img
 
 
         while True:
@@ -42,62 +57,58 @@ class SSVEP_demo(object):
             #print(self.time, " ms")
             #print((self.time // 50 ) % 2)
             if ((self.time // 50) % 2 == 0):
-                currentImage1 = invImg
+                dyn_pencil = inv_pencil_image
             else:
-                currentImage1 = img
-
-            #if (self.time % 50 < eps):                
-                #currentImage2 = invImg if not flipped1 else img
-                #flipped2 = not flipped2
+                dyn_pencil = pencil_image
             
             if ((self.time // 77) % 2 == 0):              
-                currentImage3 = invImg
+                dyn_eraser = inv_eraser_image
             else:
-                currentImage3 = img
+                dyn_eraser = eraser_image
 
-            #if (self.time % 77 < eps):                
-                #currentImage4 = invImg if not flipped1 else img
-                #flipped4 = not flipped4
-
+          
             if ((self.time // 100) % 2 == 0):              
-                currentImage5 = invImg
+                dyn_width_increaser = inv_top_left_arrow_image
             else:
-                currentImage5 = img
+                dyn_width_increaser = top_left_arrow_image
 
-            
-            #if (self.time % 100 < eps):                
-                #currentImage6 = invImg if not flipped1 else img
-                #flipped6 = not flipped6
             
             if ((self.time // 133) % 2 == 0):               
-                currentImage7 = invImg
+                dyn_width_decreaser = inv_bottom_right_arrow_image
             else:
-                currentImage7 = img
+                dyn_width_decreaser = bottom_right_arrow_image
+
+          
+            if ((self.time // 100) % 2 == 0):              
+                dyn_color_increaser = inv_top_left_arrow_image
+            else:
+                dyn_color_increaser = top_left_arrow_image
 
             
-            #if (self.time % 133 < eps):                
-                #currentImage8 = invImg if not flipped1 else img
-                #flipped8 = not flipped8
+            if ((self.time // 133) % 2 == 0):               
+                dyn_color_decreaser = inv_bottom_right_arrow_image
+            else:
+                dyn_color_decreaser = bottom_right_arrow_image
 
 
             margins = 200
             width = 1500
             #height = 1080
 
-            icon1 = self.canvas.create_image(margins, 170,anchor=NW,image=currentImage1)
-            #icon2 = self.canvas.create_image(margins, 320,anchor=NW,image=currentImage2)
+            drawn_pencil = self.canvas.create_image(margins, 170,anchor=NW,image=dyn_pencil)
+            drawn_eraser = self.canvas.create_image(margins, 320,anchor=NW,image=dyn_eraser)
 
-            icon3= self.canvas.create_image(margins, 550,anchor=NW,image=currentImage3)
-            #icon4= self.canvas.create_image(margins, 720,anchor=NW,image=currentImage4)
+            drawn_width_increaser= self.canvas.create_image(margins, 550,anchor=NW,image=dyn_width_increaser)
+            drawn_width_decreaser= self.canvas.create_image(margins, 720,anchor=NW,image=dyn_width_decreaser)
 
-            icon5= self.canvas.create_image(width-margins, 170,anchor=NW,image=currentImage5)
-            #icon6 =self.canvas.create_image(width-margins, 320,anchor=NW,image=currentImage6)
+            drawn_color_increaser = self.canvas.create_image(width-margins, 170,anchor=NW,image=dyn_color_increaser)
+            drawn_color_decreaser =self.canvas.create_image(width-margins, 320,anchor=NW,image=dyn_color_decreaser)
 
-            icon7 = self.canvas.create_image(width-margins, 550,anchor=NW,image=currentImage7)
+            #icon7 = self.canvas.create_image(width-margins, 550,anchor=NW,image=dyn_width_increaser)
             #icon8 = self.canvas.create_image(width-margins, 720,anchor=NW,image=currentImage8)
 
             #icons= [icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8]
-            icons= [icon1, icon3, icon5, icon7]
+            icons= [drawn_pencil, drawn_eraser, drawn_width_increaser, drawn_width_decreaser, drawn_color_increaser, drawn_color_decreaser]
 
 
             self.root.after_idle(self.update)
@@ -115,9 +126,8 @@ def main():
     # Root setup
     root = Tk()
     root.title("SSVEP_demo")
-    filename = "media/resized.png"
     root.geometry('1920x1080')
-    app = SSVEP_demo(root, filename)
+    app = SSVEP_demo(root)
     root.mainloop()
 
 
