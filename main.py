@@ -125,7 +125,7 @@ class SSVEP_demo(object):
             icons= [drawn_pencil, drawn_eraser, drawn_width_increaser, drawn_width_decreaser, drawn_color_increaser, drawn_color_decreaser]
 
 
-            self.root.after_idle(self.update)
+            self.root.after(1,self.update)
 
             yield
 
